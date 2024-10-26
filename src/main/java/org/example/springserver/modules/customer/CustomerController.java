@@ -14,7 +14,7 @@ public class CustomerController {
     this.customerRepository = customerRepository;
   }
 
-  @GetMapping("/customers")
+  @GetMapping("/api/customers")
   public List<Customer> getCustomers() {
     return customerRepository.findAll();
   }
