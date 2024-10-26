@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  db:
+    image: postgres
+    container_name: postgres_container # Optional: Der Name des Containers
+    environment:
+      POSTGRES_USER: myuser # Der Benutzername für die Datenbank
+      POSTGRES_PASSWORD: mypassword # Das Passwort für den Benutzer
+      POSTGRES_DB: mydatabase # Der Name der Datenbank
+    ports:
+      - "5432:5432" # Der Port, auf dem PostgreSQL zugänglich ist (Standard: 5432)
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    privileged: true
+    user: root
+    ports:
+      - "8088:8088"
+      - "50000:50000"
+    container_name: jenkins
+    volumes:
+      - /Users/tun/jenkins_compose/jenkins_configuration:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
