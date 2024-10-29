@@ -14,24 +14,29 @@ import org.springframework.web.server.ResponseStatusException;
 @RequestMapping("/api")
 public class CustomerController {
 
-  final CustomerRepository customerRepository;
+    final CustomerRepository customerRepository;
 
-  public CustomerController(final CustomerRepository customerRepository) {
-    this.customerRepository = customerRepository;
-  }
+    public CustomerController(final CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
 
-  @GetMapping("/customers")
-  public List<Customer> getCustomers() {
-    return customerRepository.findAll();
-  }
+    @GetMapping("/customers")
+    public List<Customer> getCustomers() {
+        return customerRepository.findAll();
+    }
 
-  @GetMapping("/customer/{id}")
-  public Customer getCustomerByPathId(@PathVariable Integer id) {
-    return customerRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-  }
+    @GetMapping("/customer/{id}")
+    public Customer getCustomerByPathId(@PathVariable Integer id) {
+        return customerRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
 
-  @GetMapping("/customer")
-  public Customer getCustomerByParamID(@RequestParam Integer id) {
-    return customerRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-  }
+    @GetMapping("/customer")
+    public Customer getCustomerByParamID(@RequestParam Integer id) {
+        return customerRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/customer/name/{name}")
+    public Customer getCustomerByName(@PathVariable String name) {
+        return customerRepository.findByName(name);
+    }
 }
