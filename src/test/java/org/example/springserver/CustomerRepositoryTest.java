@@ -1,5 +1,7 @@
 package org.example.springserver;
 
+import org.example.springserver.modules.account.Account;
+import org.example.springserver.modules.account.AccountRepository;
 import org.example.springserver.modules.customer.Customer;
 import org.example.springserver.modules.customer.CustomerRepository;
 import org.junit.jupiter.api.Test;
@@ -11,6 +13,8 @@ public class CustomerRepositoryTest {
 
     @Autowired
     private CustomerRepository customerRepository;
+    @Autowired
+    private AccountRepository accountRepository;
 
     @Test
     public void testFindById() {
@@ -20,5 +24,10 @@ public class CustomerRepositoryTest {
         // customerRepository.save(customer);
 
         customerRepository.findById(1);
+    }
+
+    @Test
+    public void testLoadingAllCustomers() {
+        customerRepository.findAll();
     }
 }

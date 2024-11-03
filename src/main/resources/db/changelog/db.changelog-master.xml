@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+  <changeSet id="968f0d4e-cf27-49a7-a265-81963c368c95" author="tun">
+    <createTable tableName="account">
+      <column name="id" type="int">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="iban" type="varchar(255)"/>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="d3db124f-a0cd-4032-9b9a-d4e24f787f6a" author="tun">
+    <addColumn tableName="customer">
+      <column name="account_id" type="int"/>
+    </addColumn>
+    <addColumn tableName="account">
+      <column name="customer_id" type="int"/>
+    </addColumn>
+  </changeSet>
+
+  <changeSet id="42ec0ee3-acd7-48dd-bbb1-d017537d7f0d" author="tun">
+    <addForeignKeyConstraint baseTableName="customer" baseColumnNames="account_id"
+                             constraintName="customer_fk_account"
+                             referencedTableName="account" referencedColumnNames="id"/>
+    <addForeignKeyConstraint baseTableName="account" baseColumnNames="customer_id"
+                             constraintName="account_fk_customer"
+                             referencedTableName="customer" referencedColumnNames="id"/>
+  </changeSet>
+
+</databaseChangeLog>

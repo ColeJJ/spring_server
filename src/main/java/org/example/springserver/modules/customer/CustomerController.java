@@ -37,6 +37,6 @@ public class CustomerController {
 
     @GetMapping("/customer/name/{name}")
     public Customer getCustomerByName(@PathVariable String name) {
-        return customerRepository.findByName(name);
+        return customerRepository.findByLastName(name);
     }
 }
