@@ -1,8 +1,6 @@
 package org.example.springserver;
 
-import org.example.springserver.modules.account.Account;
 import org.example.springserver.modules.account.AccountRepository;
-import org.example.springserver.modules.customer.Customer;
 import org.example.springserver.modules.customer.CustomerRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
